@@ -1,0 +1,373 @@
+.app {
+  display: flex;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+  overflow-x: hidden;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 40vh;
+  overflow: hidden;
+  border-radius: 0;
+  z-index: 10;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.sidebar-open .main-content {
+  margin-left: 280px;
+}
+
+.hamburger {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.hamburger-line {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background-color: var(--text-h);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger-line.open:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-line.open:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-line.open:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 72px;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  background: transparent;
+  z-index: 100;
+  transition: left 0.3s ease;
+}
+
+.sidebar-open .navbar {
+  left: 280px;
+}
+
+.navbar-search input {
+  width: 300px;
+  max-width: 50vw;
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  font-family: var(--sans);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.navbar-search input:focus {
+  border-color: var(--accent);
+}
+
+.navbar-about {
+  padding: 10px 24px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  font-family: var(--sans);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.navbar-about:hover {
+  background: var(--accent-bg);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100vh;
+  background-color: var(--bg);
+  border-right: 1px solid var(--border);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 0;
+}
+
+.sidebar-link {
+  display: block;
+  padding: 12px 24px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 16px;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.sidebar-link:hover {
+  background: var(--accent-bg);
+  color: var(--accent);
+  border-left-color: var(--accent);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  text-align: left;
+  border: none;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+}
+
+.section {
+  margin-bottom: 32px;
+  width: 100%;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 10;
+  background: var(--bg);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-h);
+  margin: 0;
+}
+
+.section-scroll-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.section-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+}
+
+.arrow-btn-left,
+.arrow-btn-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text-h);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 20;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.arrow-btn-left {
+  left: 0;
+}
+
+.arrow-btn-right {
+  right: 0;
+}
+
+.arrow-btn-left:hover,
+.arrow-btn-right:hover {
+  background: var(--accent-bg);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.movie-grid {
+  display: flex;
+  gap: 20px;
+  padding: 0 56px 20px;
+  flex-shrink: 0;
+}
+
+.section-scroll::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.section-scroll::-webkit-scrollbar-track {
+  display: none;
+}
+
+.section-scroll::-webkit-scrollbar-thumb {
+  display: none;
+}
+
+.section-scroll:active {
+  cursor: grabbing;
+}
+
+.movie-grid {
+  display: flex;
+  gap: 20px;
+  padding: 0 24px 20px;
+  flex-shrink: 0;
+}
+
+.movie-card {
+  flex-shrink: 0;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.movie-card:hover {
+  box-shadow: var(--shadow);
+}
+
+.movie-card-img {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+.movie-card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-h);
+  margin: 12px 16px 8px;
+}
+
+.movie-card-meta {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 16px 16px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.movie-card-type {
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.movie-card-year {
+  color: var(--text);
+}
+
+@media (max-width: 1024px) {
+  h1 {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+
+  .sidebar-open .main-content {
+    margin-left: 0;
+  }
+
+  .navbar {
+    left: 72px;
+  }
+
+  .navbar-search input {
+    width: 180px;
+  }
+}
